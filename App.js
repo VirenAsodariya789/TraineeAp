@@ -18,4 +18,4 @@ export default class HelloWorldApp extends Component {
     );
   }
 }
-export default App;
+
