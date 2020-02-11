@@ -5,6 +5,7 @@ metro.config.js
 node_modules/
 yarn.lock
 ios/Pods/
+ios/build/
 ios/TraineeAp.xcworkspace/
 android/app/build/
 android/.idea/
