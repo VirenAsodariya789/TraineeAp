@@ -7,18 +7,27 @@
  */
 
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-export default class App extends Component {
-  state = {
-    myState:
-      "This is a text component, created using state data. It will change or updated on clicking it."
-  };
-  updateState = () => this.setState({ myState: "The state is updated" });
+const styles = StyleSheet.create({
+  bigBlue: {
+    color: "blue",
+    fontWeight: "bold",
+    fontSize: 30
+  },
+  red: {
+    color: "red"
+  }
+});
+
+export default class LotsOfStyles extends Component {
   render() {
     return (
       <View>
-        <Text onPress={this.updateState}> {this.state.myState} </Text>
+        <Text style={styles.red}>Just red</Text>
+        <Text style={styles.bigBlue}>just bigblue</Text>
+        <Text style={[styles.bigBlue, styles.red]}>bigBlue,then red</Text>
+        <Text style={[styles.red, styles.bigBlue]}>red,then bigBlue</Text>
       </View>
     );
   }
