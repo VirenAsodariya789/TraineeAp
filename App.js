@@ -7,14 +7,27 @@
  */
 
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Text, View } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
-export default class Bananas extends Component {
+class Greeting extends Component {
   render() {
-    let pic = {
-      uri:
-        "https://images.pexels.com/photos/1804035/pexels-photo-1804035.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    };
-    return <Image source={pic} style={{ width: 200, height: 150 }} />;
+    return (
+      <View style={{ alignItems: "center" }}>
+        <Text>Hello {this.props.name}!</Text>
+      </View>
+    );
+  }
+}
+
+export default class LotsOfGreetings extends Component {
+  render() {
+    return (
+      <View style={{ alignItems: "center", top: 50 }}>
+        <Greeting name="ajay" />
+        <Greeting name="hardik" />
+        <Greeting name="ketan" />
+      </View>
+    );
   }
 }
