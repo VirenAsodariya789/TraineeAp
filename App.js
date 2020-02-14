@@ -7,17 +7,16 @@
  */
 
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
-export default class FlexDimensionsBasic extends Component {
+export default class FlexDirectionBasic extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, backgroundColor: "red" }} />
-        <View style={{ flex: 2, backgroundColor: "green" }} />
-        <View style={{ flex: 3, backgroundColor: "blue" }} />
-        <View style={{ flex: 4, backgroundColor: "pink" }} />
-        <View style={{ flex: 5, backgroundColor: "yellow" }} />
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{ width: 50, height: 50, backgroundColor: "red" }} />
+        <View style={{ width: 50, height: 50, backgroundColor: "green" }} />
+        <View style={{ width: 50, height: 50, backgroundColor: "blue" }} />
+        <View style={{ width: 50, height: 50, backgroundColor: "pink" }} />
       </View>
     );
   }
