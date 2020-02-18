@@ -11,10 +11,18 @@ import { View } from "react-native";
 export default class FlexWrapDemo extends Component {
   render() {
     return (
-      // Flex Wrap Demo
-      // Properties flexWrap:'wrap' | 'nowrap'
-      //
-      <View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap" }}>
+      // Align Content Demo
+      // Properties Align Content:'flex-start'| 'flex-end' | 'stretch' | 'space-between'|'space-around'
+
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          flexWrap: "wrap",
+
+          alignContent: "center"
+        }}
+      >
         <View
           style={{
             height: 100,
