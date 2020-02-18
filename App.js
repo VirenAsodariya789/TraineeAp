@@ -8,38 +8,142 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 
-export default class AlignSelfDemo extends Component {
+export default class FlexWrapDemo extends Component {
   render() {
     return (
-      // Align Self Demo
-      // Properties 'flex-start'
-      //             'flex-end'
-      //              'center'
-      //              'stretch'
+      // Flex Wrap Demo
+      // Properties flexWrap:'wrap' | 'nowrap'
+      //
+      <View style={{ flex: 1, flexDirection: "row", flexWrap: "wrap" }}>
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "orange",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "red",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "red",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "blue",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "pink",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "black",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "yellow",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "green",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "black",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
 
-      <View style={{ flex: 1, justifyContent: "center" }}>
         <View
           style={{
-            height: 50,
+            height: 100,
             width: 50,
-            backgroundColor: "red"
+            backgroundColor: "aqua",
+            borderWidth: 1,
+            marginBottom: 5
           }}
         />
-        <View style={{ height: 50, width: 100, backgroundColor: "black" }} />
+
         <View
           style={{
-            height: 50,
+            height: 100,
             width: 50,
-            alignSelf: "flex-end",
-            backgroundColor: "green"
+            backgroundColor: "teal",
+            borderWidth: 1,
+            marginBottom: 5
           }}
         />
+
         <View
           style={{
-            height: 50,
+            height: 100,
             width: 50,
-            alignSelf: "center",
-            backgroundColor: "blue"
+            backgroundColor: "navy",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "purple",
+            borderWidth: 1,
+            marginBottom: 5
+          }}
+        />
+
+        <View
+          style={{
+            height: 100,
+            width: 50,
+            backgroundColor: "chocolate",
+            borderWidth: 1,
+            marginBottom: 5
           }}
         />
       </View>
