@@ -17,12 +17,12 @@ export default class FlexWrapDemo extends Component {
       <View
         style={{
           flex: 1,
-          flexDirection: "row",
+          flexDirection: "column",
           flexWrap: "wrap",
           alignContent: "center"
         }}
       >
-        <View
+      <View
           style={{
             height: 100,
             width: 50,
