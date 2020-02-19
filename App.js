@@ -19,7 +19,6 @@ export default class FlexWrapDemo extends Component {
           flex: 1,
           flexDirection: "row",
           flexWrap: "wrap",
-
           alignContent: "center"
         }}
       >
