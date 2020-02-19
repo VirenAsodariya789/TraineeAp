@@ -6,154 +6,62 @@
  * @flow
  */
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View,StyleSheet,Button } from "react-native";
 
-export default class FlexWrapDemo extends Component {
+
+export default class ButtonBasics  extends Component {
+  _onPressButton() {
+    alert('You tapped the button!')
+  }
+
   render() {
     return (
-      // Align Content Demo
-      // Properties Align Content:'flex-start'| 'flex-end' | 'stretch' | 'space-between'|'space-around'
-
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          flexWrap: "wrap",
-          alignContent: "center"
-        }}
-      >
-      <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "orange",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "red",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "red",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "blue",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "pink",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "black",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "yellow",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "green",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "black",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "aqua",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "teal",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "navy",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "purple",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
-
-        <View
-          style={{
-            height: 100,
-            width: 50,
-            backgroundColor: "chocolate",
-            borderWidth: 1,
-            marginBottom: 5
-          }}
-        />
+      // Displaying a basic button
+      //  
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
       </View>
+
+      <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="This looks great!"
+          />
+          <Button
+            onPress={this._onPressButton}
+            title="OK!"
+            color="#841584"
+          />
+        </View>
+      </View>
+        
+      
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   justifyContent: 'center',
+  },
+  buttonContainer: {
+    margin: 25
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
+});
