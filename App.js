@@ -6,18 +6,11 @@
  * @flow
  */
 import React, { Component } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
-export default class FlatlistDemo extends Component {
-
+export default class FlatListBasics extends Component {
   render() {
     return (
-
       /*List View using FlatList component 
         1=====>The FlatList component displays a scrolling list of changing,
               but similarly structured, data.
@@ -27,43 +20,43 @@ export default class FlatlistDemo extends Component {
 
       <View style={styles.container}>
         <FlatList
-         data = {[
-          {key: 'Devin'},
-          {key: 'Dan'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'}
-        ]}
-        renderItem = {({item}) => <Text style={styles.item}>{item.key}</Text>}
+          data={[
+            { key: "Devin" },
+            { key: "Dan" },
+            { key: "Dominic" },
+            { key: "Jackson" },
+            { key: "James" },
+            { key: "Joel" },
+            { key: "John" },
+            { key: "Jillian" },
+            { key: "Jimmy" },
+            { key: "Julie" },
+            { key: "John" },
+            { key: "Jillian" },
+            { key: "Jimmy" },
+            { key: "Julie" }
+          ]}
+          renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
         />
-        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    paddingTop:30,
-    backgroundColor:'red'
+    flex: 1,
+    paddingTop: 30,
+    backgroundColor: "red"
   },
-  item:{
+  item: {
     //padding:10,
-    paddingTop:10,
-    paddingLeft:25,
-    
-    fontSize:20,
-    height:50,
-    margin:10,
-    backgroundColor:'blue'
+    paddingTop: 10,
+    paddingLeft: 25,
+
+    fontSize: 20,
+    height: 50,
+    margin: 10,
+    backgroundColor: "blue"
   }
 });
