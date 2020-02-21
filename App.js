@@ -6,37 +6,36 @@
  * @flow
  */
 import React, { Component } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { SectionList, StyleSheet, Text, View } from "react-native";
 
-export default class FlatListBasics extends Component {
+export default class SectionListBasics extends Component {
   render() {
     return (
-      /*List View using FlatList component 
-        1=====>The FlatList component displays a scrolling list of changing,
-              but similarly structured, data.
-        2=====>The FlatList component requires two props: data and renderItem.
-               data is the source of information for the list. 
-              renderItem takes one item from the source and returns a formatted component to render.*/
+      // SectionList  component
 
       <View style={styles.container}>
-        <FlatList
-          data={[
-            { key: "Devin" },
-            { key: "Dan" },
-            { key: "Dominic" },
-            { key: "Jackson" },
-            { key: "James" },
-            { key: "Joel" },
-            { key: "John" },
-            { key: "Jillian" },
-            { key: "Jimmy" },
-            { key: "Julie" },
-            { key: "John" },
-            { key: "Jillian" },
-            { key: "Jimmy" },
-            { key: "Julie" }
+        <SectionList
+          sections={[
+            { title: "D", data: ["Devin", "Dan", "Dominic"] },
+            {
+              title: "J",
+              data: [
+                "Jackson",
+                "James",
+                "Jillian",
+                "Jimmy",
+                "Joel",
+                "John",
+                "Julie"
+              ]
+            },
+            { title: "K", data: ["Karan", "Kamal", "kiran"] }
           ]}
-          renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
+          renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({ section }) => (
+            <Text style={styles.sectionHeader}>{section.title}</Text>
+          )}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );
@@ -46,17 +45,21 @@ export default class FlatListBasics extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 35
+  },
+  sectionHeader: {
+    paddingTop: 3,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 15,
+    fontWeight: "bold",
     backgroundColor: "red"
   },
   item: {
-    //padding:10,
-    paddingTop: 10,
-    paddingLeft: 25,
-
+    padding: 10,
     fontSize: 20,
     height: 50,
-    margin: 10,
-    backgroundColor: "blue"
+    color: "blue"
   }
 });
