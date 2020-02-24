@@ -10,30 +10,33 @@ import {
   
   Text,
   View,
-  Image,
   StyleSheet,
-  TextInput
+  TextInput,
+  Button,
+  Alert
 } from "react-native";
 
 export default class TextInputBasics extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: ''
-    };
-  }
+  
+    
+    state = {
+      text:"loading"
+    }
+  
   render() {
     return (
-      //  Using a TextInput  component
+      //  Using a TextInput and Button example  component
 
       <View style={styles.container}>
-       <Text style={{color: 'cyan'}}>{this.state.username}</Text>
+       <Text style={{fontSize:50}}>{this.state.text}</Text>
        <TextInput
-         value={this.state.username}
-         onChangeText={(username) => this.setState({ username })}
-         placeholder={'Username'}
+         style={{fontSize:30,height:40}}
+         onChangeText={(text) => this.setState({ text })}
+         placeholder="type here"
          style={styles.input}
        />
+       <Button title="click me" 
+       onPress={()=> Alert.alert("Suceesfull")}/>
      </View>
     );
   }
