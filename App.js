@@ -7,7 +7,7 @@
  */
 import React, { Component } from "react";
 import {
-  ScrollView,
+  
   Text,
   View,
   Image,
@@ -16,35 +16,41 @@ import {
 } from "react-native";
 
 export default class TextInputBasics extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: ''
+    };
+  }
   render() {
     return (
       //  Using a TextInput  component
 
-      <ScrollView>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Your name"
-            maxLength={20}
-          />
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+       <Text style={{color: 'cyan'}}>{this.state.username}</Text>
+       <TextInput
+         value={this.state.username}
+         onChangeText={(username) => this.setState({ username })}
+         placeholder={'Username'}
+         style={styles.input}
+       />
+     </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    paddingTop: 50
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
   },
-  textInput: {
-    borderColor: "#CCCCCC",
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20
-  }
-});
+  input: {
+    width: 250,
+    height: 44,
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: '#ecf0f1'
+  },
+ });
