@@ -10,8 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "accordion-collapse-react-native": "^0.2.8",
+    "lodash": "^4.17.15",
     "react": "16.9.0",
-    "react-native": "0.61.5"
+    "react-native": "0.61.5",
+    "react-native-collapsible": "^1.5.1",
+    "react-native-simple-accordian": "^1.0.2",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
