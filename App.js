@@ -5,55 +5,37 @@
  * @format
  * @flow
  */
+
 import React, { Component } from "react";
-import {
-  
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  Button,
-  Alert
-} from "react-native";
+import { Image, Text, View } from "react-native";
 
-export default class TextInputBasics extends Component {
-  
-    
-    state = {
-      text:"loading"
-    }
-  
+export default class App extends Component {
   render() {
-    return (
-      //  Using a TextInput and Button example  component
+    //React native card view example
 
-      <View style={styles.container}>
-       <Text style={{fontSize:50}}>{this.state.text}</Text>
-       <TextInput
-         style={{fontSize:30,height:40}}
-         onChangeText={(text) => this.setState({ text })}
-         placeholder="type here"
-         style={styles.input}
-       />
-       <Button title="click me" 
-       onPress={()=> Alert.alert("Suceesfull")}/>
-     </View>
+    return (
+      <View
+        style={{ width: 200, height: 200, flexDirection: "row", margin: 24 }}
+      >
+        <Image
+          style={{ width: 200, height: 200, position: "absolute" }}
+          source={{
+            uri: "https://www.dike.lib.ia.us/images/sample-1.jpg/image"
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            alignSelf: "flex-end"
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 20, margin: 6 }}>
+            {"Title"}
+          </Text>
+          <Text style={{ color: "white", margin: 6 }}>{"Subtitle"}</Text>
+        </View>
+      </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffffff',
-  },
-  input: {
-    width: 250,
-    height: 44,
-    padding: 10,
-    marginBottom: 10,
-    backgroundColor: '#ecf0f1'
-  },
- });
