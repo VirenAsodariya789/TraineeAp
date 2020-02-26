@@ -1,71 +1,56 @@
+//This is an example code to get DatePicker// 
 import React, { Component } from 'react';
-import { Platform, View, Text, CheckBox } from 'react-native';
-
-
-var tempCheckValues = [];
-export default class App extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      checkBoxChecked: []
-    }
+//import react in our code. 
+import {View, StyleSheet} from 'react-native';
+//import all the components we are going to use.
+import DatePicker from 'react-native-datepicker';
+//import DatePicker from the package we installed
+ 
+export default class MyDatePicker extends Component {
+  constructor(props){
+    super(props)
+    //set value in state for initial date
+    this.state = {date:"26-02-2020"}
   }
-
-  checkBoxChanged(id, value) {
-
-    this.setState({
-      checkBoxChecked: tempCheckValues
-    })
-
-    var tempCheckBoxChecked = this.state.checkBoxChecked;
-    tempCheckBoxChecked[id] = !value;
-
-    this.setState({
-      checkBoxChecked: tempCheckBoxChecked
-    })
-
-  }
-
-  render() {
-
-    const products = [{
-      id: 1
-    },
-    {
-      id: 2
-    },
-    {
-      id: 3
-    }];
-
+ 
+  render(){
     return (
-
-      products.map((val) => {
-
-        { tempCheckValues[val.id] = false }
-
-        return (
-
-          <View key={val.id} style={{ flexDirection: 'column' }}>
-
-      <CheckBox
-
-          value={this.state.checkBoxChecked[val.id]}
-
-          onValueChange={() => this.checkBoxChanged(val.id, this.state.checkBoxChecked[val.id])}
-
+      <View style={styles.container}>
+ 
+        <DatePicker
+          style={{width: 200}}
+          date={this.state.date} //initial date from state
+          mode="date" //The enum of date, datetime and time
+          placeholder="select date"
+          format="DD-MM-YYYY"
+          minDate="01-01-2016"
+          maxDate="01-01-2019"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36
+            }
+          }}
+          onDateChange={(date) => {this.setState({date: date})}}
         />
-
-      </View >
-
-)
-
+ 
+      </View>
+    )
+  }
 }
-
-)
-
-);
-}
-}
+const styles = StyleSheet.create ({
+ container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent:'center',
+    marginTop: 50,
+    padding:16
+ }
+})
