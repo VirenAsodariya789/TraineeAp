@@ -1,56 +1,53 @@
-//This is an example code to get DatePicker// 
+/*Example of React Native Vector Icon*/
 import React, { Component } from 'react';
-//import react in our code. 
-import {View, StyleSheet} from 'react-native';
-//import all the components we are going to use.
-import DatePicker from 'react-native-datepicker';
-//import DatePicker from the package we installed
- 
-export default class MyDatePicker extends Component {
-  constructor(props){
-    super(props)
-    //set value in state for initial date
-    this.state = {date:"26-02-2020"}
-  }
- 
-  render(){
+//import React
+import { Platform, StyleSheet, Text, View } from 'react-native';
+//import all the basic components
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+//import vector icons
+
+type Props = {};
+export default class App extends Component<Props> {
+  render() {
+    Icon.getImageSource('user', 20, 'red').then(source =>
+      this.setState({ userIcon: source })
+    );
     return (
       <View style={styles.container}>
- 
-        <DatePicker
-          style={{width: 200}}
-          date={this.state.date} //initial date from state
-          mode="date" //The enum of date, datetime and time
-          placeholder="select date"
-          format="DD-MM-YYYY"
-          minDate="01-01-2016"
-          maxDate="01-01-2019"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0
-            },
-            dateInput: {
-              marginLeft: 36
-            }
-          }}
-          onDateChange={(date) => {this.setState({date: date})}}
-        />
- 
+        <Text>Example of Vector Icon</Text>
+        <View
+          style={{
+            marginTop: 16,
+            marginBottom: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+          }}>
+          <Text>
+            <Icon name="rocket" size={'{30}'} color="#900" />
+          </Text>
+          {/*Icon Component*/}
+          <Icon name="rocket" size={30} color="#900" />
+        </View>
+        <View style={{ marginTop: 16, marginBottom: 16 }}>
+          {/*Icon.Button Component*/}
+          <Icon.Button
+            name="facebook"
+            backgroundColor="#3b5998"
+            onPress={() => alert('Login with Facebook')}>
+            Login with Facebook
+          </Icon.Button>
+        </View>
       </View>
-    )
+    );
   }
 }
-const styles = StyleSheet.create ({
- container: {
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent:'center',
-    marginTop: 50,
-    padding:16
- }
-})
+    backgroundColor: '#F5FCFF',
+  },
+});
