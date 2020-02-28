@@ -1,53 +1,94 @@
-/*Example of React Native Vector Icon*/
-import React, { Component } from 'react';
-//import React
-import { Platform, StyleSheet, Text, View } from 'react-native';
-//import all the basic components
+import React, { Component } from "react";
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-//import vector icons
+import { StyleSheet, View, Platform, Text } from "react-native";
 
-type Props = {};
-export default class App extends Component<Props> {
+import { RadioGroup } from "react-native-btr";
+
+export default class App extends Component<{}> {
+  constructor() {
+    super();
+
+    this.state = {
+      radioButtons: [
+        {
+          label: "Apple",
+          value: "Apple",
+          checked: true,
+          color: "#F44336",
+          disabled: false,
+          flexDirection: "row",
+          size: 11
+        },
+
+        {
+          label: "Mango",
+          value: "Mango",
+          checked: false,
+          color: "#FF8F00",
+          disabled: false,
+          flexDirection: "row",
+          size: 11
+        },
+
+        {
+          label: "Banana",
+          value: "Banana",
+          checked: false,
+          color: "#1B5E20",
+          disabled: false,
+          flexDirection: "row",
+          size: 11
+        }
+      ]
+    };
+  }
+
   render() {
-    Icon.getImageSource('user', 20, 'red').then(source =>
-      this.setState({ userIcon: source })
-    );
+    let selectedItem = this.state.radioButtons.find(e => e.checked == true);
+    selectedItem = selectedItem
+      ? selectedItem.value
+      : this.state.radioButtons[0].value;
+
     return (
-      <View style={styles.container}>
-        <Text>Example of Vector Icon</Text>
-        <View
-          style={{
-            marginTop: 16,
-            marginBottom: 16,
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}>
-          <Text>
-            <Icon name="rocket" size={'{30}'} color="#900" />
-          </Text>
-          {/*Icon Component*/}
-          <Icon name="rocket" size={30} color="#900" />
-        </View>
-        <View style={{ marginTop: 16, marginBottom: 16 }}>
-          {/*Icon.Button Component*/}
-          <Icon.Button
-            name="facebook"
-            backgroundColor="#3b5998"
-            onPress={() => alert('Login with Facebook')}>
-            Login with Facebook
-          </Icon.Button>
+      <View style={styles.MainContainer}>
+        <RadioGroup
+          color="#0277BD"
+          labelStyle={{ fontSize: 20 }}
+          radioButtons={this.state.radioButtons}
+          onPress={radioButtons => this.setState({ radioButtons })}
+          style={{ paddingTop: 20 }}
+        />
+
+        <View style={styles.selectedItemView}>
+          <Text style={styles.selectedText}>Selected Item: {selectedItem}</Text>
         </View>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
+  MainContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: "#FFF8E1",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: Platform.OS === "ios" ? 20 : 0
   },
+
+  selectedItemView: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: 14,
+    backgroundColor: "#263238",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  selectedText: {
+    fontSize: 17,
+    color: "#fff"
+  }
 });
