@@ -2,39 +2,31 @@
 import React, { Component } from "react";
 //Import React
 
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  ToastAndroid,
+  Alert,
+  StyleSheet,
+  Text,
+  View,
+  Button
+} from "react-native";
 //Import Basic React Native Component
 
 import Spinner from "react-native-loading-spinner-overlay";
 
 export default class App extends React.Component {
-  state = {
-    //default loading false
-    loading: false
+  _toastWithDurationHandler = () => {
+    //function to make Toast With Duration
+    ToastAndroid.show("Hi I am Simple Toast", ToastAndroid.SHORT);
   };
-  componentDidMount() {
-    //Setting a timer to show the spinner demo in every 3 second
-    setInterval(() => {
-      this.setState({
-        //change the state of the laoding in every 3 second
-        loading: !this.state.loading
-      });
-    }, 5000);
-  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Spinner
-          //visibility of Overlay Loading Spinner
-          visible={this.state.loading}
-          //Text with the Spinner
-          textContent={"Loading..."}
-          //Text style of the Spinner Text
-          textStyle={styles.spinnerTextStyle}
+        <Button
+          title="Generate Toast With Duration"
+          onPress={this._toastWithDurationHandler}
         />
-        <Text style={{ textAlign: "center", fontSize: 20 }}>
-          Spinner Overlay Example
-        </Text>
       </View>
     );
   }
@@ -43,13 +35,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
     justifyContent: "center",
-    textAlign: "center",
-    paddingTop: 30,
-    backgroundColor: "#ecf0f1",
-    padding: 8
-  },
-  spinnerTextStyle: {
-    color: "#FFF"
+    backgroundColor: "#ecf0f1"
   }
 });
