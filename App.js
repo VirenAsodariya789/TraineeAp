@@ -1,7 +1,7 @@
 /*This is an example of Segmented Control Tab in React Native*/
 import React, { Component } from "react";
 //Import React
-import Toast from "react-native-root-toast";
+
 import {
   ToastAndroid,
   Alert,
@@ -12,43 +12,51 @@ import {
 } from "react-native";
 //Import Basic React Native Component
 
+const Toast = props => {
+  if (props.visible) {
+    ToastAndroid.showWithGravityAndOffset(
+      props.message,
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50
+    );
+    return null;
+  }
+  return null;
+};
+
 export default class App extends React.Component {
-  constructor() {
-    super(...arguments);
+  constructor(props) {
+    super(props);
     this.state = {
       visible: false
     };
   }
 
-  componentDidMount() {
-    setTimeout(
-      () =>
-        this.setState({
-          visible: true
-        }),
-      4000
-    ); // show toast after 2s
+  handleButtonPress = () => {
+    this.setState(
+      {
+        visible: true
+      },
+      () => {
+        this.hideToast();
+      }
+    );
+  };
 
-    setTimeout(
-      () =>
-        this.setState({
-          visible: false
-        }),
-      6000
-    ); // hide toast after 5s
-  }
+  hideToast = () => {
+    this.setState({
+      visible: false
+    });
+  };
 
   render() {
     return (
-      <Toast
-        visible={this.state.visible}
-        position={50}
-        shadow={false}
-        animation={false}
-        hideOnPress={true}
-      >
-        This is a message
-      </Toast>
+      <View style={styles.container}>
+        <Toast visible={this.state.visible} message="example" />
+        <Button title="Toast Demo" onPress={this.handleButtonPress} />
+      </View>
     );
   }
 }
