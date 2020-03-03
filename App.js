@@ -1,22 +1,40 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { iOSColors } from "react-native-typography";
+import { TextInput, Text, TouchableOpacity, View } from "react-native";
 
-export default class HelloWorldApp extends Component {
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      enterredText: ""
+    };
+  }
+
+  clear = () => {
+    this._textInput.setNativeProps({
+      text: " "
+    });
+  };
+
   render() {
     return (
-      <View>
-        <Text style={iOSColors.display4}>Hello Material!</Text>
-        <Text style={iOSColors.display3}>Reguler 56</Text>
-        <Text style={iOSColors.display2}>Reguler 45</Text>
-        <Text style={iOSColors.display1}>Reguler 34</Text>
-        <Text style={iOSColors.headline}>Reguler 24</Text>
-        <Text style={iOSColors.title}>medium 20</Text>
-        <Text style={iOSColors.subheading}>Reguler 16</Text>
-        <Text style={iOSColors.body2}>medium 14</Text>
-        <Text style={iOSColors.body1}>Reguler 14</Text>
-        <Text style={iOSColors.caption}>Reguler 12</Text>
-        <Text style={iOSColors.buttom}>medium 14</Text>
+      <View style={{ justifyContent: "center", flex: 1 }}>
+        <TextInput
+          ref={component => {
+            this._textInput = component;
+          }}
+          style={{
+            height: 50,
+            marginHorizontal: 20,
+            borderWidth: 1,
+            borderColor: "#ccf"
+          }}
+          onChangeText={text => {
+            this._textInput.setNativeProps({ text: text });
+          }}
+        />
+        <TouchableOpacity onPress={() => this.clear()}>
+          <Text> Clear</Text>
+        </TouchableOpacity>
       </View>
     );
   }
