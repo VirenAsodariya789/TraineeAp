@@ -1,7 +1,7 @@
 /*This is an example of Segmented Control Tab in React Native*/
 import React, { Component } from "react";
 //Import React
-
+import Toast from "react-native-root-toast";
 import {
   ToastAndroid,
   Alert,
@@ -12,22 +12,43 @@ import {
 } from "react-native";
 //Import Basic React Native Component
 
-import Spinner from "react-native-loading-spinner-overlay";
-
 export default class App extends React.Component {
-  _toastWithDurationHandler = () => {
-    //function to make Toast With Duration
-    ToastAndroid.show("Hi I am Simple Toast", ToastAndroid.SHORT);
-  };
+  constructor() {
+    super(...arguments);
+    this.state = {
+      visible: false
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(
+      () =>
+        this.setState({
+          visible: true
+        }),
+      4000
+    ); // show toast after 2s
+
+    setTimeout(
+      () =>
+        this.setState({
+          visible: false
+        }),
+      6000
+    ); // hide toast after 5s
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Button
-          title="Generate Toast With Duration"
-          onPress={this._toastWithDurationHandler}
-        />
-      </View>
+      <Toast
+        visible={this.state.visible}
+        position={50}
+        shadow={false}
+        animation={false}
+        hideOnPress={true}
+      >
+        This is a message
+      </Toast>
     );
   }
 }
@@ -37,6 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ecf0f1"
+    backgroundColor: "#F5FCFF"
   }
 });
