@@ -11,7 +11,7 @@ import ContactScreen from "./pages/ContactScreen";
 function Home() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home Screen</Text>
+      <Text>Home Screen1</Text>
     </View>
   );
 }
@@ -19,7 +19,7 @@ function Home() {
 function About() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>About Screen</Text>
+      <Text>About Screen2</Text>
     </View>
   );
 }
@@ -27,7 +27,7 @@ function About() {
 function Contact() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Contact Screen</Text>
+      <Text>Contact Screen3</Text>
     </View>
   );
 }
