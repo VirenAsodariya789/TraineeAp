@@ -1,53 +1,44 @@
-import "react-native-gesture-handler";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import * as React from "react";
+import { Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import HomeScreen from "./pages/HomeScreen";
-import AboutScreen from "./pages/AboutScreen";
-import ContactScreen from "./pages/ContactScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-function Home() {
+function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home Screen1</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <Text style={{ fontSize: 30 }}>Home!</Text>
+      <Button
+        title="Go to Settings"
+        onPress={() => navigation.navigate("Settings")}
+      />
     </View>
   );
 }
 
-function About() {
+function SettingsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>About Screen2</Text>
+      <Text style={{ fontSize: 30 }}>Settings!</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
 
-function Contact() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Contact Screen3</Text>
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="About" component={About} />
-      <Drawer.Screen name="Contact" component={Contact} />
-    </Drawer.Navigator>
-  );
-}
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <MyDrawer />
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
