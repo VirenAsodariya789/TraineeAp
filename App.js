@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 function HomeScreen({ navigation }) {
   return (
@@ -30,7 +30,7 @@ function SettingsScreen({ navigation }) {
   );
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
   return (
