@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 function HomeScreen({ navigation }) {
   return (
@@ -35,7 +36,28 @@ const Tab = createMaterialTopTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === "Home") {
+              iconName = focused
+                ? "information-circle"
+                : "information-circle-outline";
+            } else if (route.name === "Settings") {
+              iconName = focused ? "list-box" : "list";
+            }
+
+            return <Icon name="rocket" size={"{30}"} color="#900" />;
+            //<Icon name={iconName} size={size} color={color} />;
+          }
+        })}
+        tabBarOptions={{
+          activeTintColor: "tomato",
+          inactiveTintColor: "gray"
+        }}
+      >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
