@@ -1,45 +1,80 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, View, Text, Platform, Alert } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Alert } from 'react-native';
+ 
+export default class MyApp extends Component
+{
+  constructor()
+  {
+    super();
 
-import CountDown from 'react-native-countdown-component';
-
-export default class App extends Component {
-
-  onDoneCountdown = () => {
-
-    Alert.alert("Countdown Finish.");
-
+    this.Array_Items = [
+      'January', 
+      'February', 
+      'March', 
+      'April', 
+      'May', 
+      'June', 
+      'July', 
+      'August', 
+      'September', 
+      'October', 
+      'November', 
+      'December'
+      ];
   }
+  
+  render()
+  {
+    return(
+      <View style = { styles.MainContainer }>
 
-  onPressCountdown = () => {
+        <ScrollView>
 
-    Alert.alert("Countdown Component Press.");
+        {
 
-  }
+          this.Array_Items.map(( item, key ) =>
+          (
+            <View key = { key } style = { styles.item }>
 
-  render() {
-    return (
-      <View style={styles.MainContainer}>
 
-        <CountDown
-          until={600}
-          onFinish={this.onDoneCountdown}
-          onPress={this.onPressCountdown}
-          size={20}
-        />
+                <Text style = { styles.item_text_style } onPress={()=>{Alert.alert(item.toString())}}>{ item }</Text>
 
-      </View>
-    );
+
+                <View style = { styles.item_separator }/>
+
+
+            </View>
+          ))
+        
+        }
+
+        </ScrollView>
+
+      </View>  
+    )
   }
 }
-const styles = StyleSheet.create({
-
-  MainContainer: {
+ 
+const styles = StyleSheet.create(
+{
+  MainContainer:
+  {
     flex: 1,
-    paddingTop: (Platform.OS) === 'ios' ? 20 : 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
+    paddingTop: (Platform.OS === 'ios') ? 20 : 0
+  },
 
+  item_text_style:
+  {
+    fontSize: 20,
+    color: '#000',
+    padding: 10
+  },
+  
+  item_separator:
+  {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#263238',
+  }
 });
