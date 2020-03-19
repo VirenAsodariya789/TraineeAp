@@ -1,66 +1,83 @@
 import * as React from "react";
-import { Text, View, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Icon from "react-native-vector-icons/FontAwesome";
+import {
+  Text,
+  View,
+  Button,
+  StatusBar,
+  SafeAreaView,
+  StyleSheet,
+  ScrollView
+} from "react-native";
+import ImageLoader from "react-native-image-progress";
+import * as Progress from "react-native-progress";
 
-function HomeScreen({ navigation }) {
+import {
+  DebugInstructions,
+  ReloadInstructions,
+  Header,
+  LearnMoreLinks,
+  Colors
+} from "react-native/Libraries/NewAppScreen";
+
+const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }}
-    >
-      <Text style={{ fontSize: 30 }}>Home!</Text>
-      <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate("Settings")}
-      />
-    </View>
+    <React.Fragment>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={StyleSheet.scrollView}
+        >
+          <View style={StyleSheet.container}>
+            <ImageLoader
+              component={ImageLoader}
+              resizeMode="contain"
+              indicator={Progress}
+              indicator={true}
+              indicatorProps={{
+                size: 80,
+                borderWidth: 0,
+                color: "#062baa",
+                unfilledColor: "#0e6605"
+              }}
+              source={{
+                uri:
+                  "http://www.techup.co.in/wp-content/uploads/2019/01/img_butterfly.jpg"
+              }}
+              style={[styles.fitImage]}
+            ></ImageLoader>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </React.Fragment>
   );
-}
+};
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: Colors.lighter
+  },
+  engine: {
+    position: "absolute",
+    right: 0
+  },
+  body: {
+    backgroundColor: Colors.white
+  },
+  highlight: {
+    fontWeight: "700"
+  },
+  fitImage: {
+    height: 300,
+    width: 300,
+    padding: 4
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+    flexDirection: "column"
+  }
+});
 
-function SettingsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={{ fontSize: 30 }}>Settings!</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
-    </View>
-  );
-}
-
-const Tab = createMaterialTopTabNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === "Home") {
-              iconName = focused
-                ? "information-circle"
-                : "information-circle-outline";
-            } else if (route.name === "Settings") {
-              iconName = focused ? "list-box" : "list";
-            }
-
-            return <Icon name="rocket" size={"{30}"} color="#900" />;
-            //<Icon name={iconName} size={size} color={color} />;
-          }
-        })}
-        tabBarOptions={{
-          activeTintColor: "tomato",
-          inactiveTintColor: "gray"
-        }}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+export default App;
