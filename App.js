@@ -1,80 +1,43 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, View, Text, ScrollView, Platform, Alert } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, Alert,Animated } from 'react-native';
  
-export default class MyApp extends Component
+class MyApp extends React.Component
 {
-  constructor()
-  {
-    super();
-
-    this.Array_Items = [
-      'January', 
-      'February', 
-      'March', 
-      'April', 
-      'May', 
-      'June', 
-      'July', 
-      'August', 
-      'September', 
-      'October', 
-      'November', 
-      'December'
-      ];
+  constructor(props){
+    super(props);
+    this.position=new Animated.ValueXY(0,0);
+    Animated.spring(this.position,{
+      toValue:{x:200,y:300},
+      stiffness:300
+    }).start()
   }
   
   render()
   {
     return(
-      <View style = { styles.MainContainer }>
-
-        <ScrollView>
-
-        {
-
-          this.Array_Items.map(( item, key ) =>
-          (
-            <View key = { key } style = { styles.item }>
-
-
-                <Text style = { styles.item_text_style } onPress={()=>{Alert.alert(item.toString())}}>{ item }</Text>
-
-
-                <View style = { styles.item_separator }/>
-
-
-            </View>
-          ))
-        
-        }
-
-        </ScrollView>
-
-      </View>  
-    )
+      <Animated.View style={this.position.getLayout()}>
+        <View style={styles.ball}/>
+      </Animated.View>
+    );
   }
 }
- 
+ export default MyApp
 const styles = StyleSheet.create(
 {
-  MainContainer:
+  container:
   {
     flex: 1,
-    paddingTop: (Platform.OS === 'ios') ? 20 : 0
-  },
-
-  item_text_style:
-  {
-    fontSize: 20,
-    color: '#000',
-    padding: 10
-  },
+    backgroundColor:'#fff',
   
-  item_separator:
-  {
-    height: 1,
-    width: '100%',
-    backgroundColor: '#263238',
+    
+  },
+  ball:{
+    width:60,
+    height:60,
+    borderRadius:30,
+    backgroundColor:'red',
   }
+
+
 });
