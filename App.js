@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
-import { Text, View,Image,ScrollView,TextInput } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 
-function Cat(){
+function Cat(props) {
   return (
-    <View >
-      <Text>I am cat</Text>
+    <View>
+      <Text>Hello, I am {props.name}!</Text>
     </View>
-  )
+  );
 }
 
-export default class ScrollViewExample extends Component {
-  render() {
-    return (
-      <View>
-        <Text>welcome?</Text>
-        <Cat/>
-        <Cat/>
-        <Cat/>
-
-      </View>
-    );
-  }
+export default function Cafe() {
+  return (
+    <View>
+      <Cat name="Maru" />
+      <Cat name="Jellylorum" />
+      <Cat name="Spot" />
+    </View>
+  );
 }
