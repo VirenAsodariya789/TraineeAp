@@ -1,20 +1,71 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { Component } from "react";
+import {
+  Alert,
+  AppRegistry,
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  SectionList
+} from "react-native";
 
-function Cat(props) {
-  return (
-    <View>
-      <Text>Hello, I am {props.name}!</Text>
-    </View>
-  );
+export default class ButtonBasic extends Component {
+  showAlert1() {
+    Alert.alert("Alert Title", "My Alert Msg", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]);
+  }
+  showAlert2() {
+    Alert.alert(
+      "Alert Title",
+      "My Alert Msg",
+      [
+        {
+          text: "Ask me later",
+          onPress: () => console.log("Ask me later pressed")
+        },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
+  }
+
+  render() {
+    return (
+      <View style={StyleSheet.container}>
+        <View style={StyleSheet.buttonContainer}>
+          <Button onPress={this.showAlert1} title="Button 1" />
+        </View>
+        <View style={StyleSheet.buttonContainer}>
+          <Button onPress={this.showAlert2} title="Button 2" color="#009933" />
+        </View>
+      </View>
+    );
+  }
 }
 
-export default function Cafe() {
-  return (
-    <View>
-      <Cat name="Maru" />
-      <Cat name="Jellylorum" />
-      <Cat name="Spot" />
-    </View>
-  );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  buttonContainer: {
+    margin: 20
+  },
+  multiButtonContainer: {
+    margin: 20,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  }
+});
