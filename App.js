@@ -1,71 +1,64 @@
-import React, { Component } from "react";
-import {
-  Alert,
-  AppRegistry,
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  SectionList
-} from "react-native";
+import React, { useRef } from "react";
+import { Animated, Text, View, StyleSheet, Button } from "react-native";
 
-export default class ButtonBasic extends Component {
-  showAlert1() {
-    Alert.alert("Alert Title", "My Alert Msg", [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ]);
-  }
-  showAlert2() {
-    Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
-      [
-        {
-          text: "Ask me later",
-          onPress: () => console.log("Ask me later pressed")
-        },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ],
-      { cancelable: false }
-    );
-  }
+export default function App() {
+  // fadeAnim will be used as the value for opacity. Initial Value: 0
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  render() {
-    return (
-      <View style={StyleSheet.container}>
-        <View style={StyleSheet.buttonContainer}>
-          <Button onPress={this.showAlert1} title="Button 1" />
-        </View>
-        <View style={StyleSheet.buttonContainer}>
-          <Button onPress={this.showAlert2} title="Button 2" color="#009933" />
-        </View>
+  const fadeIn = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+    }).start();
+  };
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 2000,
+    }).start();
+  };
+
+  return (
+    <View style={styles.container}>
+      <Animated.View
+        style={[
+          styles.fadingContainer,
+          {
+            opacity: fadeAnim, // Bind opacity to animated value
+          },
+        ]}
+      >
+        <Text style={styles.fadingText}>Fading View!</Text>
+      </Animated.View>
+      <View style={styles.buttonRow}>
+        <Button title="Fade In" onPress={fadeIn} />
+        <Button title="Fade Out" onPress={fadeOut} />
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center"
+    alignItems: "center",
+    justifyContent: "center",
   },
-  buttonContainer: {
-    margin: 20
+  fadingContainer: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    backgroundColor: "powderblue",
   },
-  multiButtonContainer: {
-    margin: 20,
+  fadingText: {
+    fontSize: 28,
+    textAlign: "center",
+    margin: 10,
+  },
+  buttonRow: {
     flexDirection: "row",
-    justifyContent: "space-between"
-  }
+    marginVertical: 16,
+  },
 });
