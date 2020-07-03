@@ -1,42 +1,50 @@
 //This is an example code for AppState//
 import React, { Component } from "react";
 //import react in our code.
-import { AppState, Text } from "react-native";
+import { StatusBar } from "react-native";
+import { Text, AsyncStorage, View, TextInput, StyleSheet } from "react-native";
+import { Value } from "react-native-reanimated";
 //import all the components we are going to use.
-export default class App extends Component {
+class AsyncStorageExample extends Component {
   state = {
-    appState: AppState.currentState,
+    name: "",
   };
-  componentDidMount() {
-    AppState.addEventListener("change", this._handleAppStateChange);
-  }
-  componentWillUnmount() {
-    AppState.removeEventListener("change", this._handleAppStateChange);
-  }
-  _handleAppStateChange = (nextAppState) => {
-    if (
-      this.state.appState.match(/inactive|background/) &&
-      nextAppState === "active"
-    ) {
-      console.log("App State: " + "App has come to the foreground!");
-      alert("App State: " + "App has come to the foreground!");
-    }
-    console.log("App State: " + nextAppState);
-    alert("App State: " + nextAppState);
-    this.setState({ appState: nextAppState });
+  componentDidMount = () =>
+    AsyncStorage.getItem("name").then((Value) =>
+      this.setState({ name: Value })
+    );
+
+  setName = (Value) => {
+    AsyncStorage.setItem("name", Value);
+    this.setState({ name: Value });
   };
+
   render() {
     return (
-      <Text
-        style={{
-          flex: 1,
-          marginTop: 30,
-          padding: 20,
-          backgroundColor: "white",
-        }}
-      >
-        Current state is: {this.state.appState}
-      </Text>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.textInput}
+          autoCapitalize="none"
+          onChangeText={this.setName}
+        />
+        <Text>{this.state.name}</Text>
+      </View>
     );
   }
 }
+
+export default AsyncStorageExample;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 50,
+  },
+  textInput: {
+    margin: 5,
+    height: 100,
+    width: 400,
+    borderWidth: 1,
+    backgroundColor: "#7685ed",
+  },
+});
