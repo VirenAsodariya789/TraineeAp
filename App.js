@@ -1,63 +1,124 @@
 import React, { Component } from "react";
-
 import {
+  StyleSheet,
   Text,
   View,
-  StyleSheet,
-  Platform,
-  Alert,
-  BackHandler,
+  Easing,
+  Animated,
+  ScrollView,
 } from "react-native";
+import Button from "react-native-button";
 
 export default class App extends Component {
-  componentDidMount() {
-    BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+  constructor() {
+    super();
+    this.animatedValue = new Animated.Value(0);
   }
 
-  componentWillMount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+  animate(easing) {
+    this.animatedValue.setValue(0);
+    Animated.timing(this.animatedValue, {
+      toValue: 1,
+      duration: 1000,
+      easing,
+    }).start();
   }
-
-  onBackPress = () => {
-    Alert.alert(
-      "Exit from App",
-      "Do you want to exit from App?",
-      [
-        {
-          text: "Yes",
-          onBackPress: () => BackHandler.exitApp(),
-        },
-        {
-          text: "No",
-          onBackPress: () => console.log("NO Pressed"),
-        },
-      ],
-      { cancelable: false }
-    );
-    return true;
-  };
 
   render() {
+    const marginLeft = this.animatedValue.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0, 400],
+    });
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>
-          Press Hardware back button and see the alert message{"\n"}
-        </Text>
+        <Animated.View style={[styles.block, { marginLeft }]} />
+        <ScrollView>
+          <Text style={{ textAlign: "center" }}>
+            Scroll up for more animations
+          </Text>
+          <MyButton
+            style={styles.button}
+            title="Bounce"
+            onPress={this.animate.bind(this, Easing.bounce)}
+          />
+          <MyButton
+            style={styles.button}
+            title="Cubic"
+            onPress={this.animate.bind(this, Easing.cubic)}
+          />
+          <MyButton
+            style={styles.button}
+            title="Back"
+            onPress={this.animate.bind(this, Easing.back(2))}
+          />
+          <MyButton
+            style={styles.button}
+            title="Elastic"
+            onPress={this.animate.bind(this, Easing.elastic(2))}
+          />
+          <MyButton
+            style={styles.button}
+            title="Ease"
+            onPress={this.animate.bind(this, Easing.ease)}
+          />
+          <MyButton
+            style={styles.button}
+            title="InOut"
+            onPress={this.animate.bind(this, Easing.inOut(Easing.quad))}
+          />
+          <MyButton
+            style={styles.button}
+            title="In"
+            onPress={this.animate.bind(this, Easing.in(Easing.quad))}
+          />
+          <MyButton
+            style={styles.button}
+            title="Out"
+            onPress={this.animate.bind(this, Easing.out(Easing.quad))}
+          />
+          <MyButton
+            style={styles.button}
+            title="Sin"
+            onPress={this.animate.bind(this, Easing.sin)}
+          />
+          <MyButton
+            style={styles.button}
+            title="Linear"
+            onPress={this.animate.bind(this, Easing.linear)}
+          />
+          <MyButton
+            style={styles.button}
+            title="Quad"
+            onPress={this.animate.bind(this, Easing.quad)}
+          />
+        </ScrollView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const MyButton = ({ onPress, title, style }) => (
+  <Button style={style} onPress={onPress}>
+    {title}
+  </Button>
+);
+
+var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    marginTop: 60,
   },
-  headerText: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-    fontWeight: "bold",
+  button: {
+    height: 60,
+    backgroundColor: "#ededed",
+    borderRadius: 4,
+    marginTop: 10,
+    paddingTop: 20,
+    fontSize: 18,
+  },
+  block: {
+    width: 50,
+    height: 50,
+    backgroundColor: "blue",
   },
 });
