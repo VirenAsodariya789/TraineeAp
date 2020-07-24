@@ -1,20 +1,25 @@
-import React from 'react';
-import { StyleSheet, StatusBar, View } from 'react-native';
-
-const AppStatusBar = ({backgroundColor, ...props}) => {
-    return (
-        <View style={[styles.statusBar, backgroundColor]}>
-            <StatusBar backgroundColor={backgroundColor} {...props} />
-        </View>
-    );
-};
-
-const BAR_HEIGHT = StatusBar.currentHeight;
-
-const styles = StyleSheet.create({
-    statusBar: {
-        height: BAR_HEIGHT
-    },
-});
-
-export default AppStatusBar;
+import React, { Component } from 'react'  
+import {  
+    View,StyleSheet,AppRegistry,StatusBar  
+} from 'react-native'  
+  
+export default class ActivityIndicatorDemo extends Component {  
+    render() {  
+        return (  
+            <View style = {styles.container}>  
+                <StatusBar  
+                    backgroundColor = "#b3e6ff"  
+                    barStyle = "dark-content"   
+                    hidden = {false}    
+                    translucent = {true}  
+                />  
+            </View>  
+        )  
+    }  
+}  
+const styles = StyleSheet.create({  
+    container: {  
+        flex: 1,  
+    }  
+})  
+AppRegistry.registerComponent('App', () => ActivityIndicatorDemo)  
